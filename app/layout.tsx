@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Providers from "./providers";
 
 export const metadata: Metadata = {
   title: "TalentRank AI",
@@ -13,8 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-slate-50 dark:bg-slate-900">
-        {children}
+      <body className="bg-slate-50 dark:bg-slate-900 min-h-screen">
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

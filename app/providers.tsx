@@ -3,29 +3,49 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabaseClient";
 
-const SupabaseContext = createContext<any>(null);
+type SupabaseContextType = {
+  supabase: ReturnType<typeof createSupabaseBrowserClient>;
+  session: any;
+};
+
+const SupabaseContext = createContext<SupabaseContextType | null>(null);
 
 export default function Providers({ children }: { children: React.ReactNode }) {
-  const [client] = useState(() => createSupabaseBrowserClient());
+  const [supabase] = useState(() => createSupabaseBrowserClient());
   const [session, setSession] = useState<any>(null);
 
+  // Load session on mount
   useEffect(() => {
-    client.auth.getSession().then(({ data }) => {
+    const loadSession = async () => {
+      const { data } = await supabase.auth.getSession();
       setSession(data.session);
-    });
+    };
 
-    client.auth.onAuthStateChange((_event, newSession) => {
+    loadSession();
+
+    // Subscribe to auth changes
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, newSession) => {
       setSession(newSession);
     });
-  }, [client]);
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [supabase]);
 
   return (
-    <SupabaseContext.Provider value={{ supabase: client, session }}>
+    <SupabaseContext.Provider value={{ supabase, session }}>
       {children}
     </SupabaseContext.Provider>
   );
 }
 
 export function useSupabase() {
-  return useContext(SupabaseContext);
+  const context = useContext(SupabaseContext);
+  if (!context) {
+    throw new Error("useSupabase must be used within Providers");
+  }
+  return context;
 }
