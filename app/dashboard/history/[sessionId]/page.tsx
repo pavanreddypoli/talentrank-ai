@@ -182,7 +182,10 @@ export default async function HistoryDetailPage({
                       </TableCell>
 
                       <TableCell className="text-right">
-                        <DownloadResumeButton path={r.storage_path} />
+                        <DownloadResumeButton 
+                          storagePath={r.storage_path}
+                          fileName={r.file_name|| "resume"}.docx`}   // or use r.filename if available//
+                         />
                       </TableCell>
                     </TableRow>
                   );
