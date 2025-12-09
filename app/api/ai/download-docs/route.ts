@@ -26,9 +26,13 @@ export async function POST(req: Request) {
       ],
     });
 
+    // Generate DOCX buffer
     const buffer = await Packer.toBuffer(doc);
 
-    return new NextResponse(buffer, {
+    // ✅ Fix for Vercel / Next.js App Router: convert Buffer → Uint8Array
+    const uint8 = new Uint8Array(buffer);
+
+    return new NextResponse(uint8, {
       status: 200,
       headers: {
         "Content-Type":
