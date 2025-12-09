@@ -1119,7 +1119,7 @@ export default function DashboardClient() {
                             <TableCell className="text-right">
                               <div className="flex flex-col gap-1 items-end">
                                 <Button
-                                  size="xs"
+                                  size="sm"
                                   variant="outline"
                                   onClick={(e) => {
                                     e.stopPropagation();
@@ -1139,7 +1139,7 @@ export default function DashboardClient() {
                                 </Button>
 
                                 <Button
-                                  size="xs"
+                                  size="sm"
                                   variant="outline"
                                   onClick={(e) => {
                                     e.stopPropagation();
@@ -1159,7 +1159,7 @@ export default function DashboardClient() {
                                 </Button>
 
                                 <Button
-                                  size="xs"
+                                  size="sm"
                                   variant="default"
                                   onClick={(e) => {
                                     e.stopPropagation();
