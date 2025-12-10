@@ -107,18 +107,18 @@ export default function HomePage() {
                           max-w-[520px] lg:max-w-[560px]">
             <Image
               src="/screenshot.png"
-              width={560}
-              height={360}
+              width={720}
+              height={480}
               alt="TalentRank AI dashboard preview"
               className="rounded-lg border shadow-lg object-cover"
               style={{
-                maxHeight: "360px",
+                maxHeight: "480px",
                 width: "100%",
                 objectFit: "contain",
               }}
             />
 
-            <p className="mt-3 text-xs text-slate-500 text-center">
+            <p className="mt-4 text-sm text-slate-600 text-center">
               Example AI ranking view — upload resumes to see your own results
             </p>
           </div>
