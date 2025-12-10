@@ -1,39 +1,39 @@
-// app/page.tsx
+"use client";
+
+import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col">
-      {/* Top Nav */}
-      <header className="w-full border-b bg-white">
-        <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-4">
+    <main className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
+
+      {/* 🌟 STICKY NAVBAR */}
+      <header className="sticky top-0 z-50 bg-indigo-900/80 backdrop-blur-md border-b border-indigo-700 shadow-lg">
+        <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-4 text-white">
+
+          {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-lg bg-slate-900" />
-            <span className="font-semibold text-lg tracking-tight">
+            <div className="h-8 w-8 bg-yellow-400 rounded-lg shadow-md" />
+            <span className="font-bold text-lg tracking-tight">
               TalentRank AI
             </span>
           </div>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-slate-600">
-            <a href="#features" className="hover:text-slate-900">
-              Features
-            </a>
-            <a href="#how-it-works" className="hover:text-slate-900">
-              How it works
-            </a>
-            <a href="#pricing" className="hover:text-slate-900">
-              Pricing
-            </a>
+
+          {/* Menu */}
+          <nav className="hidden md:flex items-center gap-8 text-sm">
+            <a href="#features" className="hover:text-yellow-300">Features</a>
+            <a href="#how-it-works" className="hover:text-yellow-300">How it works</a>
+            <a href="#pricing" className="hover:text-yellow-300">Pricing</a>
           </nav>
+
+          {/* Buttons */}
           <div className="flex items-center gap-3">
-            <Link
-              href="/login"
-              className="text-sm text-slate-700 hover:text-slate-900"
-            >
+            <Link href="/login" className="text-sm hover:text-yellow-300">
               Log in
             </Link>
             <Link
               href="/signup"
-              className="rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800"
+              className="rounded-md bg-yellow-400 px-4 py-2 text-sm font-medium text-indigo-900 hover:bg-yellow-300"
             >
               Get started
             </Link>
@@ -41,184 +41,134 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="flex-1 bg-gradient-to-b from-slate-50 to-white">
-        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24 grid gap-10 lg:grid-cols-2 items-center">
+      {/* 🌟 HERO SECTION */}
+      <section className="flex-1 bg-gradient-to-b from-slate-100 to-white">
+        <div className="mx-auto max-w-6xl px-4 py-16 lg:py-24 grid gap-12 lg:grid-cols-2 items-center">
+
+          {/* LEFT TEXT CONTENT */}
           <div>
-            <p className="mb-3 text-xs font-semibold tracking-wide text-slate-500 uppercase">
-              For high-volume recruiting teams
+            <p className="mb-3 text-xs font-semibold tracking-wide text-indigo-700 uppercase">
+              For recruiters & job applicants
             </p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900">
-              Let AI pre-screen hundreds of resumes in minutes.
+
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+              Rank resumes in minutes.<br />
+              Improve them in seconds.
             </h1>
+
             <p className="mt-4 text-base md:text-lg text-slate-600 max-w-xl">
               TalentRank AI ingests your job description and bulk resumes, then
-              ranks candidates by true role fit—so your team can focus on
+              ranks candidates by true role fit — so your team focuses on
               interviews, not manual filtering.
             </p>
+
+            {/* HR VALUE PROPOSITION */}
+            <div className="mt-6 bg-yellow-50 border border-yellow-200 p-4 rounded-xl shadow-sm">
+              <h3 className="font-semibold text-yellow-700 text-sm">
+                For HR & Recruiting Teams
+              </h3>
+              <p className="text-slate-600 text-sm mt-1">
+                Upload hundreds of resumes and a job description, and let AI
+                automatically produce a <strong>rank-ordered shortlist</strong> with skill match,
+                experience relevance, and red-flag detection — saving hours of
+                manual resume screening.
+              </p>
+            </div>
+
+            {/* APPLICANT VALUE PROPOSITION */}
+            <div className="mt-4 bg-indigo-50 border border-indigo-200 p-4 rounded-xl shadow-sm">
+              <h3 className="font-semibold text-indigo-700 text-sm">
+                For job seekers
+              </h3>
+              <p className="text-slate-600 text-sm mt-1">
+                Upload your resume and the job description to instantly see your
+                <strong> Match Score</strong>, AI insights, and personalized suggestions
+                to <strong>improve your resume</strong> so you rank higher.
+              </p>
+            </div>
+
+            {/* CTA BUTTONS */}
             <div className="mt-8 flex flex-wrap items-center gap-4">
               <Link
-                href="/dashboard"
-                className="rounded-md bg-slate-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-slate-800"
+                href="/signup"
+                className="rounded-md bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-indigo-700 shadow"
               >
                 Start ranking resumes
               </Link>
+
               <span className="text-xs text-slate-500">
-                No credit card required • Built for enterprise HR
+                No credit card required • Built for recruiters & applicants
               </span>
-            </div>
-            <div className="mt-8 flex flex-col gap-2 text-sm text-slate-500">
-              <span>✓ Bulk upload PDF/DOCX resumes</span>
-              <span>✓ AI-based relevance scoring & ranking</span>
-              <span>✓ Exportable shortlists for your ATS</span>
             </div>
           </div>
 
-          {/* Right side - simple mock dashboard */}
-          <div className="rounded-2xl border bg-white p-5 shadow-sm">
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="text-sm font-semibold text-slate-800">
-                Sample Ranking View
-              </h2>
-              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700">
-                AI-generated
-              </span>
-            </div>
-            <div className="space-y-3">
-              {["Senior Data Engineer", "Product Marketing Manager", "HRBP Lead"].map(
-                (role, idx) => (
-                  <div
-                    key={role}
-                    className="rounded-xl border bg-slate-50 px-4 py-3 flex items-center justify-between"
-                  >
-                    <div>
-                      <p className="text-xs uppercase tracking-wide text-slate-500">
-                        Top candidate for
-                      </p>
-                      <p className="text-sm font-semibold text-slate-800">
-                        {role}
-                      </p>
-                      <p className="text-xs text-slate-500">
-                        7+ years experience • Strong skill match • Clear career progression
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-xs text-slate-500">Match score</p>
-                      <p className="text-lg font-semibold text-slate-800">
-                        {90 - idx * 6}%
-                      </p>
-                    </div>
-                  </div>
-                )
-              )}
-            </div>
+          {/* ⭐ RIGHT IMAGE / APP PREVIEW (BIGGER & CLEARER) */}
+          <div className="rounded-2xl border bg-white p-5 shadow-2xl mx-auto 
+                          max-w-[520px] lg:max-w-[560px]">
+            <Image
+              src="/screenshot.png"
+              width={560}
+              height={360}
+              alt="TalentRank AI dashboard preview"
+              className="rounded-lg border shadow-lg object-cover"
+              style={{
+                maxHeight: "360px",
+                width: "100%",
+                objectFit: "contain",
+              }}
+            />
+
+            <p className="mt-3 text-xs text-slate-500 text-center">
+              Example AI ranking view — upload resumes to see your own results
+            </p>
           </div>
+
         </div>
       </section>
 
-      {/* Features */}
-      <section
-        id="features"
-        className="border-t bg-white py-12 md:py-16"
-      >
+      {/* FEATURES SECTION */}
+      <section id="features" className="border-t bg-white py-16">
         <div className="mx-auto max-w-6xl px-4">
           <h2 className="text-2xl font-semibold text-slate-900">
-            Built for modern recruiting at scale
+            Built for hiring at scale — and job seekers who want to stand out
           </h2>
-          <p className="mt-2 text-sm text-slate-600 max-w-2xl">
-            Designed for in-house talent teams and agencies hiring across hundreds of roles per year.
-          </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
             <div className="rounded-xl border bg-slate-50 p-4">
-              <h3 className="text-sm font-semibold text-slate-900">
-                Bulk resume intake
-              </h3>
+              <h3 className="text-sm font-semibold">Bulk resume intake</h3>
               <p className="mt-2 text-xs text-slate-600">
-                Upload hundreds of PDF/DOCX resumes at once. No manual parsing or copy-pasting.
+                Upload hundreds of resumes instantly. AI parses everything.
               </p>
             </div>
+
             <div className="rounded-xl border bg-slate-50 p-4">
-              <h3 className="text-sm font-semibold text-slate-900">
-                AI-powered ranking
-              </h3>
+              <h3 className="text-sm font-semibold">AI-powered ranking</h3>
               <p className="mt-2 text-xs text-slate-600">
-                Semantic matching based on skills, experience, and role context—not just keyword counts.
+                Skill match • Experience relevance • Career progression
+              </p>
+              <p className="text-xs text-green-600 mt-1">
+                Applicants: Improve match score using AI rewrite tools.
               </p>
             </div>
+
             <div className="rounded-xl border bg-slate-50 p-4">
-              <h3 className="text-sm font-semibold text-slate-900">
-                ATS-friendly exports
-              </h3>
+              <h3 className="text-sm font-semibold">ATS-friendly exports</h3>
               <p className="mt-2 text-xs text-slate-600">
-                Export shortlists to CSV or your ATS so your existing hiring workflows stay intact.
+                Export ranked shortlists to CSV or ATS platforms.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section
-        id="pricing"
-        className="border-t bg-slate-900 text-slate-50 py-12 md:py-16"
-      >
-        <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-2xl font-semibold">
-            Simple pricing for serious teams
-          </h2>
-          <p className="mt-2 text-sm text-slate-300 max-w-xl">
-            Start small, scale up as your hiring volume grows. Cancel anytime.
-          </p>
-
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            <div className="rounded-2xl border border-slate-700 bg-slate-900/50 p-5">
-              <h3 className="text-sm font-semibold">Starter</h3>
-              <p className="mt-1 text-2xl font-bold">$29</p>
-              <p className="text-xs text-slate-300 mb-3">per month</p>
-              <ul className="space-y-1 text-xs text-slate-200">
-                <li>• Up to 100 resumes/month</li>
-                <li>• 5 active roles</li>
-                <li>• Basic AI matching</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-emerald-400 bg-slate-900 p-5 shadow-lg">
-              <h3 className="text-sm font-semibold flex items-center gap-2">
-                Pro{" "}
-                <span className="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-medium text-emerald-200">
-                  Most popular
-                </span>
-              </h3>
-              <p className="mt-1 text-2xl font-bold">$79</p>
-              <p className="text-xs text-slate-300 mb-3">per month</p>
-              <ul className="space-y-1 text-xs text-slate-200">
-                <li>• Up to 500 resumes/month</li>
-                <li>• Unlimited roles</li>
-                <li>• Advanced AI summaries</li>
-                <li>• CSV export & team access</li>
-              </ul>
-            </div>
-
-            <div className="rounded-2xl border border-slate-700 bg-slate-900/50 p-5">
-              <h3 className="text-sm font-semibold">Enterprise</h3>
-              <p className="mt-1 text-2xl font-bold">Let&apos;s talk</p>
-              <p className="text-xs text-slate-300 mb-3">custom pricing</p>
-              <ul className="space-y-1 text-xs text-slate-200">
-                <li>• Unlimited resumes & roles</li>
-                <li>• Dedicated support & SLAs</li>
-                <li>• Custom scoring & ATS integration</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* FOOTER */}
       <footer className="border-t bg-slate-950 text-slate-500 text-xs">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
           <span>© {new Date().getFullYear()} TalentRank AI.</span>
-          <span>Built for recruiting teams.</span>
+          <span>AI for hiring teams & job seekers.</span>
         </div>
       </footer>
+
     </main>
   );
 }
