@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Providers from "./providers";
 
 export const metadata: Metadata = {
-  title: "TalentRank AI",
+  title: "Talentryx AI",
   description: "AI-powered recruiter intelligence platform",
 };
 

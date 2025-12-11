@@ -42,7 +42,7 @@ export default function DashboardClientLayout({
         <div className="flex items-center gap-2">
           <div className="h-7 w-7 bg-indigo-600 rounded-lg" />
           <span className="font-bold text-indigo-700 dark:text-indigo-300 text-lg">
-            TalentRank AI
+            Talentryx AI
           </span>
         </div>
 
@@ -78,7 +78,7 @@ export default function DashboardClientLayout({
         <div className="p-6 border-b dark:border-slate-700 flex items-center justify-between">
           <div>
             <h1 className="text-xl font-bold text-indigo-700 dark:text-indigo-400">
-              TalentRank AI
+              Talentryx AI
             </h1>
             <p className="text-xs text-slate-500 dark:text-slate-400 -mt-1">
               Recruiter Intelligence Platform

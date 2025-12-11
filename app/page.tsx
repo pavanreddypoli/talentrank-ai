@@ -19,7 +19,7 @@ export default function HomePage() {
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 bg-yellow-400 rounded-lg shadow-md" />
             <span className="font-bold text-lg tracking-tight">
-              TalentRank AI
+              Talentryx AI
             </span>
           </div>
 
@@ -88,7 +88,7 @@ export default function HomePage() {
             </h1>
 
             <p className="mt-4 text-base md:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0">
-              TalentRank AI ingests your job description and bulk resumes, then
+              Talentryx AI ingests your job description and bulk resumes, then
               ranks candidates instantly by true role fit.
             </p>
 
@@ -134,7 +134,7 @@ export default function HomePage() {
               src="/screenshot.png"
               width={900}
               height={600}
-              alt="TalentRank AI dashboard preview"
+              alt="Talentryx AI dashboard preview"
               className="rounded-lg border shadow-md object-contain w-full"
             />
             <p className="mt-3 text-xs text-slate-500 text-center">
@@ -180,7 +180,7 @@ export default function HomePage() {
       {/* FOOTER */}
       <footer className="border-t bg-slate-950 text-slate-500 text-xs">
         <div className="mx-auto max-w-6xl px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>© {new Date().getFullYear()} TalentRank AI.</span>
+          <span>© {new Date().getFullYear()} Talentryx AI.</span>
           <span>AI for hiring teams & job seekers.</span>
         </div>
       </footer>

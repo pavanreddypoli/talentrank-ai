@@ -46,7 +46,7 @@ export default function SignupPage() {
         <div className="text-center mb-6">
           <h1 className="text-xl font-bold flex justify-center items-center gap-2 text-indigo-700">
             <Sparkles className="h-5 w-5 text-yellow-400" />
-            TalentRank AI
+            Talentryx AI
           </h1>
           <p className="text-slate-500 text-sm mt-1">
             Create a new account

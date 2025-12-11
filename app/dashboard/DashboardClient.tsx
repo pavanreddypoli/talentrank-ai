@@ -829,7 +829,7 @@ export default function DashboardClient() {
           <div className="px-6 py-4 flex justify-between items-center">
             <h1 className="text-lg font-bold flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-yellow-300" />
-              TalentRank AI
+              Talentryx AI
             </h1>
             <span className="text-xs text-indigo-100">Premium Dashboard</span>
           </div>
