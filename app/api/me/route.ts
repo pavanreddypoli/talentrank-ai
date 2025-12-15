@@ -3,8 +3,8 @@ import { NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 /**
- * Returns the active role for the current user
- * Assumes user already exists in `users` table
+ * Returns the user's active role.
+ * Uses service role (no cookies, no auth helpers).
  */
 export async function GET(req: Request) {
   try {
@@ -12,7 +12,7 @@ export async function GET(req: Request) {
 
     if (!email) {
       return NextResponse.json(
-        { error: "Missing user context" },
+        { error: "Missing user email" },
         { status: 401 }
       );
     }
@@ -34,7 +34,7 @@ export async function GET(req: Request) {
       user_type: user.user_type ?? "recruiter",
     });
   } catch (err) {
-    console.error("me route error:", err);
+    console.error("api/me error:", err);
     return NextResponse.json(
       { error: "Server error" },
       { status: 500 }
