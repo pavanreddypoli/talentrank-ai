@@ -4,11 +4,14 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 /**
  * This endpoint syncs a user + org into Supabase.
- * 
+ *
  * Call it from the frontend with:
- * 
+ *
  * await fetch("/api/sync-user", {
  *   method: "POST",
+ *   headers: {
+ *     "x-user-type": "recruiter" | "job_seeker"
+ *   },
  *   body: JSON.stringify({
  *     externalUserId,   // optional, e.g. auth provider id
  *     email,
@@ -21,6 +24,12 @@ export async function POST(req: Request) {
     const body = await req.json().catch(() => null);
 
     const { externalUserId, email, fullName } = body || {};
+
+    // 🔽 NEW: read user_type from header (safe default)
+    const userTypeFromHeader =
+      req.headers.get("x-user-type") === "job_seeker"
+        ? "job_seeker"
+        : "recruiter";
 
     if (!email || !fullName) {
       return NextResponse.json(
@@ -62,6 +71,8 @@ export async function POST(req: Request) {
           email,
           full_name: fullName,
           plan: "free",
+          // 🔽 NEW: persist user_type
+          user_type: userTypeFromHeader,
         })
         .select()
         .single();

@@ -9,15 +9,19 @@ export default function AfterLogin() {
 
   useEffect(() => {
     async function sync() {
-      // 🔄 Sync user profile in Supabase
-      await fetch("/api/sync-user", { method: "POST" });
-
       // ✅ Read entry intent (set from /recruiter or /job-seeker)
-      // If missing, default to recruiter flow.
       const userType =
         typeof window !== "undefined"
           ? localStorage.getItem("talentryx_user_type")
           : null;
+
+      // 🔄 Sync user profile in Supabase (with role persistence)
+      await fetch("/api/sync-user", {
+        method: "POST",
+        headers: {
+          "x-user-type": userType || "recruiter",
+        },
+      });
 
       // 🚀 Redirect to the right experience
       if (userType === "job_seeker") {
@@ -51,7 +55,9 @@ export default function AfterLogin() {
                         rounded-full animate-spin mb-4"
         />
 
-        <p className="text-lg font-medium text-center">Setting up your account...</p>
+        <p className="text-lg font-medium text-center">
+          Setting up your account...
+        </p>
 
         <p className="text-sm text-indigo-200 mt-2 text-center max-w-xs">
           Just a moment — we’re preparing your personalized workspace and securing
