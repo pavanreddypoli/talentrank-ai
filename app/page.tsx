@@ -16,9 +16,9 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-4 text-white">
 
           {/* Logo */}
-          <div className="flex items-center gap-2">
-            <div className="h-8 w-8 bg-yellow-400 rounded-lg shadow-md" />
-            <span className="font-bold text-lg tracking-tight">
+          <div className="flex items-center gap-3">
+            <span className="text-yellow-400 text-2xl md:text-3xl">✨</span>
+            <span className="font-bold text-xl md:text-2xl tracking-tight text-white">
               Talentryx AI
             </span>
           </div>
@@ -96,24 +96,32 @@ export default function HomePage() {
             <div className="mt-6 grid gap-4 md:grid-cols-2">
 
               {/* Recruiters */}
-              <div className="bg-indigo-50 border border-indigo-200 p-4 rounded-xl shadow-sm text-left">
+              <Link
+                href="/recruiter"
+                className="bg-indigo-50 border border-indigo-200 p-4 rounded-xl shadow-sm text-left
+                           cursor-pointer transition hover:shadow-md hover:border-indigo-400"
+              >
                 <h3 className="font-semibold text-indigo-700 text-sm">
                   For recruiters
                 </h3>
                 <p className="text-slate-600 text-sm mt-1">
                   Upload hundreds of resumes. Get instant ranked shortlists with AI-powered insights.
                 </p>
-              </div>
+              </Link>
 
               {/* Job Seekers */}
-              <div className="bg-indigo-50 border border-indigo-200 p-4 rounded-xl shadow-sm text-left">
+              <Link
+                href="/job-seeker"
+                className="bg-indigo-50 border border-indigo-200 p-4 rounded-xl shadow-sm text-left
+                           cursor-pointer transition hover:shadow-md hover:border-indigo-400"
+              >
                 <h3 className="font-semibold text-indigo-700 text-sm">
                   For job seekers
                 </h3>
                 <p className="text-slate-600 text-sm mt-1">
                   See your Match Score + get personalized AI suggestions to boost ranking.
                 </p>
-              </div>
+              </Link>
 
             </div>
 

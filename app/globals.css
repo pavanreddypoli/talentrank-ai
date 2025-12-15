@@ -127,3 +127,15 @@
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 0px rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0px rgba(99, 102, 241, 0.4);
+  }
+}
