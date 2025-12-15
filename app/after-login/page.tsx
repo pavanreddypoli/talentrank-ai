@@ -23,10 +23,13 @@ export default function AfterLogin() {
         },
       });
 
-      // 🚀 Redirect to the right experience
-      if (userType === "job_seeker") {
-        // Future: dedicated job seeker dashboard route
-        router.push("/dashboard");
+      // 🔐 NEW: Ask server (Supabase) for authoritative user role
+      const res = await fetch("/api/me");
+      const data = await res.json();
+
+      // 🚀 Redirect to the right experience (DB-driven)
+      if (data?.user_type === "job_seeker") {
+        router.push("/job-seeker/dashboard");
       } else {
         // Default recruiter flow
         router.push("/dashboard");
