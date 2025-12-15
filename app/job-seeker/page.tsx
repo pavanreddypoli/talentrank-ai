@@ -1,8 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import { useEffect } from "react";
 
 export default function JobSeekerEntryPage() {
+
+  useEffect(() => {
+    localStorage.setItem("talentryx_user_type", "job_seeker");
+  }, []);
+
   return (
     <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4">
       <div className="max-w-xl w-full bg-white rounded-2xl shadow-xl border p-8 text-center">
