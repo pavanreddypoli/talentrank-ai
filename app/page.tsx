@@ -92,7 +92,7 @@ export default function HomePage() {
               ranks candidates instantly by true role fit.
             </p>
 
-            {/* VALUE BOXES (stack on mobile) */}
+            {/* VALUE BOXES */}
             <div className="mt-6 grid gap-4 md:grid-cols-2">
 
               {/* Recruiters */}
@@ -122,10 +122,9 @@ export default function HomePage() {
                   See your Match Score + get personalized AI suggestions to boost ranking.
                 </p>
               </Link>
-
             </div>
 
-            {/* CTA Buttons */}
+            {/* ✅ UPDATED CTA BUTTONS */}
             <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
               <Link
                 href="/signup"
@@ -133,10 +132,18 @@ export default function HomePage() {
               >
                 Start ranking resumes
               </Link>
+
+              {/* ✅ NEW JOB SEEKER CTA */}
+              <Link
+                href="/job-seeker"
+                className="rounded-md border border-indigo-600 px-6 py-3 text-sm font-medium text-indigo-700 hover:bg-indigo-50 shadow"
+              >
+                See my match score
+              </Link>
             </div>
           </div>
 
-          {/* IMAGE — responsive */}
+          {/* IMAGE */}
           <div className="rounded-2xl border bg-white p-4 shadow-xl mx-auto w-full max-w-lg">
             <Image
               src="/screenshot.png"
@@ -156,8 +163,10 @@ export default function HomePage() {
       {/* FEATURES */}
       <section id="features" className="border-t bg-white py-16">
         <div className="mx-auto max-w-6xl px-4">
+
+          {/* Recruiter Features */}
           <h2 className="text-2xl font-semibold text-slate-900 text-center md:text-left">
-            Built for hiring at scale — and job seekers who want to stand out
+            Built for hiring at scale
           </h2>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -182,6 +191,35 @@ export default function HomePage() {
               </p>
             </div>
           </div>
+
+          {/* ✅ NEW JOB SEEKER FEATURES */}
+          <h2 className="mt-16 text-2xl font-semibold text-slate-900 text-center md:text-left">
+            Built for job seekers who want to stand out
+          </h2>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border bg-slate-50 p-4">
+              <h3 className="text-sm font-semibold">Resume Match Score</h3>
+              <p className="mt-2 text-xs text-slate-600">
+                Instantly see how well your resume matches a job description before you apply.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-slate-50 p-4">
+              <h3 className="text-sm font-semibold">AI-powered improvement tips</h3>
+              <p className="mt-2 text-xs text-slate-600">
+                Get personalized suggestions to improve keywords, experience, and impact.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-slate-50 p-4">
+              <h3 className="text-sm font-semibold">ATS optimization</h3>
+              <p className="mt-2 text-xs text-slate-600">
+                Optimize your resume to pass automated screening systems used by top companies.
+              </p>
+            </div>
+          </div>
+
         </div>
       </section>
 
