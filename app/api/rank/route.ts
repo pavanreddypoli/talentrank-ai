@@ -1,6 +1,4 @@
 import { NextResponse } from "next/server";
-import officeParser from "officeparser";
-import mammoth from "mammoth";
 import { createSupabaseServerClient } from "@/lib/supabaseServer";
 import {
   extractPdfText,
@@ -8,41 +6,6 @@ import {
   extractDocxText,
 } from "@/lib/resumeExtractor";
 
-// -------------------------
-// DOCX extraction
-// -------------------------
-
-async function extractDocxText(buffer: Buffer): Promise<string> {
-  try {
-    const result = await mammoth.extractRawText({ buffer });
-    return result?.value || "";
-  } catch (err) {
-    console.error("DOCX parse error:", err);
-    return "";
-  }
-}
-
-
-// -------------------------
-// DOC (legacy) extraction
-// -------------------------
-async function extractDocText(buffer: Buffer): Promise<string> {
-  try {
-    return await new Promise<string>((resolve) => {
-      officeParser.parseOffice(buffer, (data, err) => {
-        if (err) {
-          console.error("DOC parse error:", err);
-          resolve("");
-        } else {
-          resolve(data || "");
-        }
-      });
-    });
-  } catch (err) {
-    console.error("DOC parse fatal error:", err);
-    return "";
-  }
-}
 
 // -------------------------
 function normalizeText(text: string) {
