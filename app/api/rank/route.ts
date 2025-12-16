@@ -6,7 +6,6 @@ import {
   extractDocxText,
 } from "@/lib/resumeExtractor";
 
-
 // -------------------------
 function normalizeText(text: string) {
   return text.replace(/\s+/g, " ").trim();
@@ -70,23 +69,8 @@ function computeMatch(jdKeywords: string[], resume: string) {
   };
 }
 
-function makeSummary(
-  name: string,
-  pct: number,
-  matched: string[],
-  missing: string[]
-) {
-  return [
-    `${name} is a ${pct >= 80 ? "strong" : pct >= 60 ? "moderate" : "low"} match (${pct}%).`,
-    matched.length > 0
-      ? `Strengths: ${matched.slice(0, 5).join(", ")}.`
-      : `No overlapping strengths found.`,
-    missing.length > 0 ? `Missing/weak: ${missing.slice(0, 5).join(", ")}.` : "",
-  ].filter(Boolean);
-}
-
 // -------------------------
-// Insight helpers (UNCHANGED)
+// Insight helpers (unchanged)
 // -------------------------
 function pickTop(list: string[], max: number) {
   const seen = new Set<string>();
@@ -143,7 +127,6 @@ function makeInsights(
   matched: string[],
   missing: string[]
 ): { strengths: string[]; gaps: string[] } {
-  // unchanged
   const m = bucketize(matched);
   const g = bucketize(missing);
 
@@ -184,12 +167,10 @@ function makeInsights(
     ["Leadership indicators", g.leadership, "Add leadership/ownership examples (scope, decisions, mentoring, stakeholder management)."],
   ];
 
-  let addedGap = false;
   for (const [label, arr, advice] of gapCats) {
     const top = pickTop(arr, 4);
     if (top.length > 0) {
       gaps.push(`${label} appear missing: ${top.join(", ")}. ${advice}`);
-      addedGap = true;
       break;
     }
   }
@@ -216,8 +197,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
     }
 
-    const user = session.user;
-
     const formData = await req.formData();
     const jobDescription = formData.get("jobDescription") as string;
     const files = formData.getAll("resumes") as File[];
@@ -234,26 +213,35 @@ export async function POST(req: Request) {
     for (const file of files) {
       const buffer = Buffer.from(await file.arrayBuffer());
 
+      // ✅ ALWAYS HAVE A NAME
+      const candidateName =
+        file.name?.replace(/\.(pdf|docx|doc)$/i, "") || "Resume";
+
       let text = "";
 
-      if (file.name.toLowerCase().endsWith(".pdf")) {
-        const pdfModule: any = await import("pdf-parse");
-        const parsed = await pdfModule(buffer);
-        text = parsed.text || "";
-      } else if (file.name.toLowerCase().endsWith(".docx")) {
-        text = await extractDocxText(buffer);
-      } else if (file.name.toLowerCase().endsWith(".doc")) {
-        text = await extractDocText(buffer);
-      } else {
-        text = buffer.toString("utf-8");
+      // ✅ SAFE EXTRACTION (PDF FAILURE WILL NOT CRASH)
+      try {
+        if (file.name.toLowerCase().endsWith(".pdf")) {
+          text = await extractPdfText(buffer);
+        } else if (file.name.toLowerCase().endsWith(".docx")) {
+          text = await extractDocxText(buffer);
+        } else if (file.name.toLowerCase().endsWith(".doc")) {
+          text = await extractDocText(buffer);
+        } else {
+          text = buffer.toString("utf-8");
+        }
+      } catch (err) {
+        console.error("Extraction failed for:", file.name, err);
+        text = "";
       }
 
       text = normalizeText(text);
 
       const { matched, missing, matchPercent, score } = computeMatch(keywords, text);
-      const { strengths, gaps } = makeInsights(file.name, matchPercent, matched, missing);
+      const { strengths, gaps } = makeInsights(candidateName, matchPercent, matched, missing);
 
       results.push({
+        candidate_name: candidateName, // ✅ FIXED
         file_name: file.name,
         score,
         keyword_match_percent: matchPercent,
@@ -267,6 +255,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ results });
   } catch (err) {
     console.error("ERROR /api/rank:", err);
-    return NextResponse.json({ error: "Internal error" }, { status: 500 });
+    return NextResponse.json({ error: "Ranking failed" }, { status: 500 });
   }
 }

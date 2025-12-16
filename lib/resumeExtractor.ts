@@ -40,14 +40,20 @@ export async function extractDocText(buffer: Buffer): Promise<string> {
 ------------------------- */
 export async function extractPdfText(buffer: Buffer): Promise<string> {
   try {
-    // Use require to bypass ESM typing issues in pdf-parse
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const pdfParse = require("pdf-parse");
+
     const parsed = await pdfParse(buffer);
-    return parsed?.text || "";
+
+    if (!parsed || !parsed.text || parsed.text.trim().length === 0) {
+      console.warn("PDF parsed but no text extracted");
+      return "";
+    }
+
+    return parsed.text;
   } catch (err) {
-    console.error("PDF parse error:", err);
-    return "";
+    console.error("PDF parse failed, continuing without text:", err);
+    return ""; // IMPORTANT: never throw
   }
 }
 
