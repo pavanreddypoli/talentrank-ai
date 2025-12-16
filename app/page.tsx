@@ -11,7 +11,7 @@ export default function HomePage() {
   return (
     <main className="min-h-screen flex flex-col bg-slate-50 text-slate-900">
 
-      {/* 🌟 NAV */}
+      {/* ================= NAV ================= */}
       <header className="sticky top-0 z-50 bg-indigo-900/90 backdrop-blur-md border-b border-indigo-700 shadow-lg">
         <div className="mx-auto max-w-6xl flex items-center justify-between px-4 py-4 text-white">
 
@@ -49,11 +49,10 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* 🌟 HERO */}
+      {/* ================= HERO ================= */}
       <section className="bg-gradient-to-b from-slate-100 to-white">
         <div className="mx-auto max-w-6xl px-4 py-12 lg:py-20 grid gap-12 lg:grid-cols-2 items-center">
 
-          {/* TEXT */}
           <div className="text-center lg:text-left">
             <p className="mb-3 text-xs font-semibold tracking-wide text-indigo-700 uppercase">
               For recruiters & job applicants
@@ -69,10 +68,9 @@ export default function HomePage() {
               candidates instantly by true role fit.
             </p>
 
-            {/* VALUE BOXES */}
+            {/* PERSONA CARDS */}
             <div className="mt-8 grid gap-6 md:grid-cols-2">
 
-              {/* 👩‍💼 Recruiters */}
               <div className="bg-indigo-50 border border-indigo-200 p-5 rounded-xl shadow-sm text-left">
                 <h3 className="font-semibold text-indigo-700 text-sm">
                   For recruiters
@@ -81,18 +79,14 @@ export default function HomePage() {
                   Upload hundreds of resumes. Get instant ranked shortlists with AI-powered insights.
                 </p>
 
-                {/* CTA */}
                 <Link
                   href="/signup"
-                  className="mt-4 inline-block w-full text-center rounded-md
-                             bg-indigo-600 px-6 py-3 text-sm font-medium text-white
-                             hover:bg-indigo-700 shadow"
+                  className="mt-4 block w-full text-center rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-700 shadow"
                 >
                   Start ranking resumes
                 </Link>
               </div>
 
-              {/* 🧑‍💻 Job Seekers */}
               <div className="bg-indigo-50 border border-indigo-200 p-5 rounded-xl shadow-sm text-left">
                 <h3 className="font-semibold text-indigo-700 text-sm">
                   For job seekers
@@ -101,12 +95,9 @@ export default function HomePage() {
                   See your Match Score + get personalized AI suggestions to boost ranking.
                 </p>
 
-                {/* CTA */}
                 <Link
                   href="/job-seeker"
-                  className="mt-4 inline-block w-full text-center rounded-md
-                             bg-indigo-600 px-6 py-3 text-sm font-medium text-white
-                             hover:bg-indigo-700 shadow"
+                  className="mt-4 block w-full text-center rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-700 shadow"
                 >
                   See my match score
                 </Link>
@@ -115,7 +106,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* IMAGE */}
           <div className="rounded-2xl border bg-white p-4 shadow-xl mx-auto w-full max-w-lg">
             <Image
               src="/screenshot.png"
@@ -132,8 +122,77 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* FEATURES (unchanged) */}
-      {/* FOOTER (unchanged) */}
+      {/* ================= BUILT FOR HIRING ================= */}
+      <section id="features" className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            Built for hiring at scale
+          </h2>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border bg-slate-50 p-6">
+              <h3 className="font-semibold mb-2">Bulk resume intake</h3>
+              <p className="text-sm text-slate-600">
+                Upload hundreds of resumes instantly. AI parses everything.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-slate-50 p-6">
+              <h3 className="font-semibold mb-2">AI-powered ranking</h3>
+              <p className="text-sm text-slate-600">
+                Skill match · Experience relevance · Career progression
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-slate-50 p-6">
+              <h3 className="font-semibold mb-2">ATS-friendly exports</h3>
+              <p className="text-sm text-slate-600">
+                Export ranked shortlists to CSV or ATS platforms.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= BUILT FOR JOB SEEKERS ================= */}
+      <section className="bg-slate-50">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <h2 className="text-2xl md:text-3xl font-bold mb-8">
+            Built for job seekers who want to stand out
+          </h2>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-xl border bg-white p-6">
+              <h3 className="font-semibold mb-2">Resume Match Score</h3>
+              <p className="text-sm text-slate-600">
+                Instantly see how well your resume matches a job description.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-white p-6">
+              <h3 className="font-semibold mb-2">AI-powered improvement tips</h3>
+              <p className="text-sm text-slate-600">
+                Personalized suggestions to improve keywords, experience, and impact.
+              </p>
+            </div>
+
+            <div className="rounded-xl border bg-white p-6">
+              <h3 className="font-semibold mb-2">ATS optimization</h3>
+              <p className="text-sm text-slate-600">
+                Optimize your resume to pass automated screening systems.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ================= FOOTER ================= */}
+      <footer className="bg-indigo-950 text-indigo-100 py-6">
+        <div className="mx-auto max-w-6xl px-4 flex justify-between text-xs">
+          <span>© 2025 Talentryx AI</span>
+          <span>AI for hiring teams & job seekers</span>
+        </div>
+      </footer>
 
     </main>
   );
