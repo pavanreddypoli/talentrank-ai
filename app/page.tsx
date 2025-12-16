@@ -80,7 +80,7 @@ export default function HomePage() {
                 </p>
 
                 <Link
-                  href="/signup"
+                  href="/recruiter"
                   className="mt-4 block w-full text-center rounded-md bg-indigo-600 px-6 py-3 text-sm font-medium text-white hover:bg-indigo-700 shadow"
                 >
                   Start ranking resumes
