@@ -19,14 +19,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { Upload, FileText, Sparkles, Loader2, Wand2 } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+import { Upload, Sparkles, Loader2 } from "lucide-react";
 
 /* -----------------------------
    Score badge logic
@@ -130,6 +123,7 @@ export default function DashboardClient() {
           <CardHeader>
             <CardTitle>Your Resume Match Analysis</CardTitle>
           </CardHeader>
+
           <CardContent className="grid md:grid-cols-2 gap-6">
             <Textarea
               placeholder="Paste job description here..."
@@ -138,10 +132,24 @@ export default function DashboardClient() {
               className="h-[260px]"
             />
 
-            <div {...getRootProps()} className="border-dashed border-2 p-6 text-center rounded-lg cursor-pointer">
+            <div
+              {...getRootProps()}
+              className="border-dashed border-2 p-6 text-center rounded-lg cursor-pointer"
+            >
               <input {...getInputProps()} />
               <Upload className="mx-auto mb-2 text-indigo-600" />
               <p className="text-sm">Upload your resume (PDF/DOCX)</p>
+
+              {files.length > 0 && (
+                <div className="mt-3 text-xs text-slate-600">
+                  <p className="font-medium mb-1">Uploaded resumes:</p>
+                  <ul className="list-disc ml-5">
+                    {files.map((f, i) => (
+                      <li key={i}>{f.name}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           </CardContent>
 
@@ -150,11 +158,7 @@ export default function DashboardClient() {
               onClick={handleUpload}
               className="w-full bg-indigo-600 hover:bg-indigo-700"
             >
-              {loading ? (
-                <Loader2 className="animate-spin h-4 w-4" />
-              ) : (
-                "Get Match Score"
-              )}
+              {loading ? <Loader2 className="animate-spin h-4 w-4" /> : "Get Match Score"}
             </Button>
           </CardContent>
         </Card>
@@ -180,7 +184,7 @@ export default function DashboardClient() {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Candidate</TableHead>
+                    <TableHead>Resume</TableHead>
                     <TableHead>Strengths</TableHead>
                     <TableHead>Gaps</TableHead>
                     <TableHead className="text-center">Score</TableHead>
@@ -198,29 +202,19 @@ export default function DashboardClient() {
                         <TableCell>{r.candidate_name}</TableCell>
 
                         <TableCell>
-                          <div className="flex flex-wrap gap-1">
-                            {r.matched_keywords.slice(0, 6).map((k: string) => (
-                              <span
-                                key={k}
-                                className="bg-emerald-100 text-emerald-700 text-xs px-2 py-0.5 rounded-full"
-                              >
-                                {k}
-                              </span>
+                          <ul className="list-disc ml-4 text-sm space-y-1">
+                            {r.strengths?.map((s: string, idx: number) => (
+                              <li key={idx}>{s}</li>
                             ))}
-                          </div>
+                          </ul>
                         </TableCell>
 
                         <TableCell>
-                          <div className="flex flex-wrap gap-1">
-                            {r.missing_keywords.slice(0, 6).map((k: string) => (
-                              <span
-                                key={k}
-                                className="bg-rose-100 text-rose-700 text-xs px-2 py-0.5 rounded-full"
-                              >
-                                {k}
-                              </span>
+                          <ul className="list-disc ml-4 text-sm space-y-1">
+                            {r.gaps?.map((g: string, idx: number) => (
+                              <li key={idx}>{g}</li>
                             ))}
-                          </div>
+                          </ul>
                         </TableCell>
 
                         <TableCell className="text-center">
@@ -229,13 +223,15 @@ export default function DashboardClient() {
                           </span>
                         </TableCell>
 
-                        <TableCell className="text-right space-x-2">
-                          <Button size="sm" variant="outline">
-                            Rewrite with AI
-                          </Button>
-                          <Button size="sm" className="bg-green-600 text-white">
-                            Boost to 80+
-                          </Button>
+                        <TableCell className="text-right">
+                          <div className="grid grid-cols-2 gap-2 justify-end">
+                            <Button size="sm" variant="outline">
+                              Rewrite with AI
+                            </Button>
+                            <Button size="sm" className="bg-green-600 text-white">
+                              Boost to 80+
+                            </Button>
+                          </div>
                         </TableCell>
                       </TableRow>
                     );
