@@ -158,7 +158,11 @@ export default function DashboardClient() {
               onClick={handleUpload}
               className="w-full bg-indigo-600 hover:bg-indigo-700"
             >
-              {loading ? <Loader2 className="animate-spin h-4 w-4" /> : "Get Match Score"}
+              {loading ? (
+                <Loader2 className="animate-spin h-4 w-4" />
+              ) : (
+                "Get Match Score"
+              )}
             </Button>
           </CardContent>
         </Card>
@@ -180,15 +184,19 @@ export default function DashboardClient() {
               <CardTitle>Your Match Results</CardTitle>
             </CardHeader>
 
-            <CardContent>
-              <Table>
+            <CardContent className="overflow-x-auto">
+              <Table className="min-w-[1100px]">
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Resume</TableHead>
-                    <TableHead>Strengths</TableHead>
-                    <TableHead>Gaps</TableHead>
-                    <TableHead className="text-center">Score</TableHead>
-                    <TableHead className="text-right">Actions</TableHead>
+                    <TableHead className="w-[14%]">Resume</TableHead>
+                    <TableHead className="w-[32%]">Strengths</TableHead>
+                    <TableHead className="w-[32%]">Gaps</TableHead>
+                    <TableHead className="w-[8%] text-center">
+                      Score
+                    </TableHead>
+                    <TableHead className="w-[14%] text-right">
+                      Actions
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
 
@@ -198,10 +206,12 @@ export default function DashboardClient() {
                     const info = getScoreInfo(pct);
 
                     return (
-                      <TableRow key={i}>
-                        <TableCell>{r.candidate_name}</TableCell>
+                      <TableRow key={i} className="align-top">
+                        <TableCell className="font-medium">
+                          {r.candidate_name}
+                        </TableCell>
 
-                        <TableCell>
+                        <TableCell className="whitespace-normal break-words">
                           <ul className="list-disc ml-4 text-sm space-y-1">
                             {r.strengths?.map((s: string, idx: number) => (
                               <li key={idx}>{s}</li>
@@ -209,7 +219,7 @@ export default function DashboardClient() {
                           </ul>
                         </TableCell>
 
-                        <TableCell>
+                        <TableCell className="whitespace-normal break-words">
                           <ul className="list-disc ml-4 text-sm space-y-1">
                             {r.gaps?.map((g: string, idx: number) => (
                               <li key={idx}>{g}</li>
@@ -217,18 +227,23 @@ export default function DashboardClient() {
                           </ul>
                         </TableCell>
 
-                        <TableCell className="text-center">
-                          <span className={`px-2 py-1 rounded text-xs ${info.className}`}>
+                        <TableCell className="text-center align-top">
+                          <span
+                            className={`inline-block px-2 py-1 rounded text-xs font-medium ${info.className}`}
+                          >
                             {pct.toFixed(1)}%
                           </span>
                         </TableCell>
 
-                        <TableCell className="text-right">
-                          <div className="grid grid-cols-2 gap-2 justify-end">
+                        <TableCell className="text-right align-top">
+                          <div className="flex gap-2 justify-end">
                             <Button size="sm" variant="outline">
                               Rewrite with AI
                             </Button>
-                            <Button size="sm" className="bg-green-600 text-white">
+                            <Button
+                              size="sm"
+                              className="bg-green-600 hover:bg-green-700 text-white"
+                            >
                               Boost to 80+
                             </Button>
                           </div>
